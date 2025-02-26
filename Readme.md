@@ -26,10 +26,14 @@ sudo ufw allow 3306/tcp
 sudo ufw reload
 ```
 **Configure the Database External IP Address**
+```bash
 HostName: <External VM IP>
-Database : realbanking
-username: realbank_user
-password: Password123
 
+Database : realbanking
+
+username: realbank_user
+
+password: Password123
+```
 **Update these changes into application.properties**
 **Run the Load test with 250 users with 100ms constant timer**
