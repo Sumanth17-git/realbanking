@@ -21,6 +21,7 @@ EXIT;
 sudo systemctl restart mysql
 
 SELECT user, host FROM mysql.user;
+USE realbanking;
 SHOW GRANTS FOR 'realbank_user'@'%';
 
 sudo ufw status
