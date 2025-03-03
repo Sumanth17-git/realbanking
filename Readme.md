@@ -42,3 +42,72 @@ password: Password123
 **Run the Load test with 250 users with 100ms constant timer**
 
 http://localhost:8081/transactions
+
+**Setup MySQL plugin in Dynatrace Hub**
+<img width="711" alt="image" src="https://github.com/user-attachments/assets/421bfc80-75a3-4765-b9a7-2a55e0ec8585" />
+
+Once installed , Create Dynatrace user and provide neccessary permission
+
+Creating a MySQL user
+```bash
+CREATE USER 'dynatrace'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+Give the user the permissions:
+```bash
+GRANT SELECT ON performance_schema.* TO 'dynatrace'@'%';
+```
+Allows the user to query the performance_schema schema
+```bash
+GRANT PROCESS ON *.* TO 'dynatrace'@'%';
+```
+Allows the user to see thread and connection metrics for other users
+```bash
+GRANT SHOW DATABASES ON *.* TO 'dynatrace'@'%';
+```
+Allows the user to see database metrics for all databases
+```bash
+GRANT SELECT ON mysql.slow_log TO 'dynatrace'@'%';
+```
+Allows the user to query slow queries
+```bash
+GRANT SELECT ON sys.x$memory_global_by_current_bytes TO 'dynatrace'@'%';
+```
+Allow the user to query memory statistics
+NOTE: Due to a MySQL limitation, to calculate database sizes you MUST grant SELECT permissions on the individual databases where you want to collect size from.
+Collecting Infrastructure metrics
+To enable CPU metrics collection, run this query on the MySQL instance:
+```bash
+SET GLOBAL innodb_monitor_enable='cpu%';
+```
+Collecting Top Slow Queries
+Enable slow queries logging to a table:
+```bash
+SET GLOBAL log_output = 'TABLE';
+SET GLOBAL slow_query_log = 'ON';
+```
+The default slow query threshold is 10 seconds You can chose the threshold of what is a "slow query" by executing:
+```bash
+SET GLOBAL long_query_time = 2;
+```
+This would set slow queries threshold to 2 seconds.
+Execution Plan Fetching
+To fetch execution plans, you must create a stored procedure for the dynatrace user:
+```bash
+CREATE SCHEMA IF NOT EXISTS dynatrace;
+```
+```bash
+DELIMITER $$
+CREATE PROCEDURE dynatrace.dynatrace_execution_plan(IN query TEXT)
+    SQL SECURITY DEFINER
+BEGIN
+    SET @explain := CONCAT('EXPLAIN FORMAT=JSON ', query);
+    PREPARE stmt FROM @explain;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END $$
+DELIMITER ;
+```
+And then grant execution permission for the dynatrace user
+```bash
+GRANT EXECUTE ON PROCEDURE dynatrace.dynatrace_execution_plan TO 'dynatrace
+```
