@@ -127,3 +127,5 @@ password:password
 Click Save
 
 Thats it !!
+<img width="718" alt="image" src="https://github.com/user-attachments/assets/a3bfaf55-1fef-434a-b536-8bbecee471c0" />
+
