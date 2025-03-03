@@ -40,3 +40,5 @@ password: Password123
 ```
 **Update these changes into application.properties**
 **Run the Load test with 250 users with 100ms constant timer**
+
+http://localhost:8081/transactions
