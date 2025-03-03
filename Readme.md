@@ -11,6 +11,7 @@ Change the bind address  bind-address = 0.0.0.0
 sudo systemctl restart mysql
 
 sudo mysql -u root -p
+password : root
 CREATE DATABASE realbanking;
 CREATE USER 'realbank_user'@'%' IDENTIFIED BY 'Password123';
 GRANT ALL PRIVILEGES ON realbanking.* TO 'realbank_user'@'%';
