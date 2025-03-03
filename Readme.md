@@ -12,6 +12,7 @@ sudo systemctl restart mysql
 
 sudo mysql -u root -p
 password : root
+SHOW DATABASES
 CREATE DATABASE realbanking;
 CREATE USER 'realbank_user'@'%' IDENTIFIED BY 'Password123';
 GRANT ALL PRIVILEGES ON realbanking.* TO 'realbank_user'@'%';
