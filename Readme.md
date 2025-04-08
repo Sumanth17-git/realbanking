@@ -113,11 +113,12 @@ DELIMITER ;
 ```
 And then grant execution permission for the dynatrace user
 ```bash
-GRANT EXECUTE ON PROCEDURE dynatrace.dynatrace_execution_plan TO 'dynatrace
+GRANT EXECUTE ON PROCEDURE dynatrace.dynatrace_execution_plan TO 'dynatrace'@'%';
 ```
 
 **Click Configure**
 <img width="710" alt="image" src="https://github.com/user-attachments/assets/6535c68e-df6b-4e5f-a26f-6f859f5efb02" />
+```bash
 Database connection
 Host: 34.21.14.215
 Port :3306
@@ -125,7 +126,7 @@ Database name :mysql
 Authentication
 Username:dynatrace
 password:password
-
+```
 <img width="655" alt="image" src="https://github.com/user-attachments/assets/eb5978fe-72fb-47d0-afcc-3dde9cccdb04" />
 
 Click Save
