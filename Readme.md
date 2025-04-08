@@ -11,7 +11,10 @@ Change the bind address  bind-address = 0.0.0.0
 sudo systemctl restart mysql
 
 mysql -u root
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'Admin@123';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin@123';
+CREATE USER 'root'@'%' IDENTIFIED BY 'admin@123';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 SHOW DATABASES;
 CREATE DATABASE realbanking;
 CREATE USER 'realbank_user'@'%' IDENTIFIED BY 'Password123';
