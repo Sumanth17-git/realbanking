@@ -97,6 +97,8 @@ CREATE SCHEMA IF NOT EXISTS dynatrace;
 ```
 ```bash
 DELIMITER $$
+```
+```bash
 CREATE PROCEDURE dynatrace.dynatrace_execution_plan(IN query TEXT)
     SQL SECURITY DEFINER
 BEGIN
@@ -105,6 +107,8 @@ BEGIN
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
 END $$
+```
+```bash
 DELIMITER ;
 ```
 And then grant execution permission for the dynatrace user
