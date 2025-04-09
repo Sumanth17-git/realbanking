@@ -45,6 +45,8 @@ password: Password123
 **Run the Load test with 250 users with 100ms constant timer**
 
 http://localhost:8081/transactions
+mysql -h <ubuntu_server_ip> -u realbank_user -p
+
 
 **Setup MySQL plugin in Dynatrace Hub**
 <img width="711" alt="image" src="https://github.com/user-attachments/assets/421bfc80-75a3-4765-b9a7-2a55e0ec8585" />
