@@ -41,11 +41,14 @@ username: realbank_user
 
 password: Password123
 ```
+```bash
+mysql -h <ubuntu_server_ip> -u realbank_user -p
+```
 **Update these changes into application.properties**
 **Run the Load test with 250 users with 100ms constant timer**
 
 http://localhost:8081/transactions
-mysql -h <ubuntu_server_ip> -u realbank_user -p
+
 
 
 **Setup MySQL plugin in Dynatrace Hub**
