@@ -43,6 +43,8 @@ password: Password123
 ```
 ```bash
 mysql -h <ubuntu_server_ip> -u realbank_user -p
+mysql -h 35.186.176.58 -P 3306 -u realbank_user -p realbanking
+
 ```
 **Update these changes into application.properties**
 **Run the Load test with 250 users with 100ms constant timer**
