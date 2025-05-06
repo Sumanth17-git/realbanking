@@ -49,7 +49,12 @@ mysql -h <ubuntu_server_ip> -u realbank_user -p
 
 http://localhost:8081/transactions
 
-
+# Validation from App Server
+```bash
+sudo apt update
+sudo apt install mysql-client -y
+mysql -h 35.186.176.58 -P 3306 -u root -p
+```
 
 **Setup MySQL plugin in Dynatrace Hub**
 <img width="711" alt="image" src="https://github.com/user-attachments/assets/421bfc80-75a3-4765-b9a7-2a55e0ec8585" />
